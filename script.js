@@ -2,7 +2,7 @@
 let currentPokemonFlavorText = [];
 let loadedPokemonData = [];
 let loadedPokemonDescription = [];
-let numberOfNextLoadingPokemon = 50; // first load 50 Pokemon
+let numberOfNextLoadingPokemon = 20; // first load 20 Pokemon
 let numberOfLoadedPokemon = 0;
 let listOfAllPokemon = [];
 let currentPokemonData;
@@ -35,7 +35,7 @@ async function getListOfAllPokemon() {
 }
 
 
-// Load Data for 50 Pokemons at first
+// Load Data for 20 Pokemons at first
 async function getPokemonData(i) {
   let url = listOfAllPokemon[i].url;
   let response = await fetch(url);
@@ -140,7 +140,7 @@ function showPokemonInfos(i) {
   removeDisplayNoneClass();
   document.getElementById('pokemon_info_container').innerHTML = '';
   document.getElementById('pokemon_info_container').innerHTML += `
-  <div class="pokemon_info_card">
+  <div class="pokemon_info_card" onclick="event.stopPropagation()">
   <div class="pokemon_info_header pokemon_type_${loadedPokemonData[i].types[0].type.name}_bgr">
     <div onclick="closePokemonInfos()">
     <img class="close_button" src="img/chevron-left-solid.svg">
@@ -329,14 +329,13 @@ function loadingAnimation() {
 
 /// SEARCH
 
-
 function searchPokemon() {
   reset();
   let searchInput = document.getElementById('searchbar').value.toLowerCase();
   for (let i = 0; i < listOfAllPokemon.length; i++) {
     if (listOfAllPokemon[i].name.includes(searchInput)) {
-      currentPokemonData = 
-      console.log(`${listOfAllPokemon[i].name},${listOfAllPokemon[i].url}  gefunden`);
+      currentPokemonData =
+        console.log(`${listOfAllPokemon[i].name},${listOfAllPokemon[i].url}  gefunden`);
       loadSearchedPokemon(i);
     }
   }
@@ -346,21 +345,21 @@ function searchPokemon() {
 
 
 function reset() {
-currentPokemonFlavorText = [];
-loadedPokemonData = [];
-loadedPokemonDescription = [];
-currentPokemonData = '';
-currentPokemonDescription = '';
+  currentPokemonFlavorText = [];
+  loadedPokemonData = [];
+  loadedPokemonDescription = [];
+  currentPokemonData = '';
+  currentPokemonDescription = '';
 }
 
 
 async function loadSearchedPokemon(i) {
-    await getPokemonData(i);
-    await getPokemonDescription(i);
-    generatePokemonThumbnail(i);
-    generatePokemonType(i);
-    console.log(`Pokemon Data Loaded ${i}/${numberOfAllPokemon}`);
-    document.getElementById('loaded_pokemon_counter').innerHTML = `
+  await getPokemonData(i);
+  await getPokemonDescription(i);
+  generatePokemonThumbnail(i);
+  generatePokemonType(i);
+  console.log(`Pokemon Data Loaded ${i}/${numberOfAllPokemon}`);
+  document.getElementById('loaded_pokemon_counter').innerHTML = `
       Pokemon Data Loaded ${i + 1}/${numberOfAllPokemon}
     `;
 }
