@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <script src="script.js"></script>
+    <script src="HTML_Templates.js"></script>
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="pokemon_types.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="load()">
+    <div class="header" id="header">
+        <img id="pokedex_logo" src="img/pokedex_logo.png" onclick="window.location.reload()">
+        <div class="searchbar_container">
+            <form><input id="searchbar" type="text" placeholder="Search Pokemon by Name or ID"><button onclick="searchPokemon()" id="searchbutton" type="button">OK</button></form>
+        </div>
+        <div id="loaded_pokemon_counter"></div>
+    </div>
+    <div id="pokemon_info_container" class="display_none"></div>
+    <div id="content_container"></div>
+    <div id="load_more_pokemon"> >> scroll down for more Pokemon << </div>
+</body>
+
+</html>

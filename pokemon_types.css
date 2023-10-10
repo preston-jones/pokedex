@@ -1,0 +1,175 @@
+.pokemon_type_grass_bgr {
+    background-color: rgba(168, 168, 120, 0.2);
+}
+
+.pokemon_type_grass_bgr:hover {
+    background-color: rgba(168, 168, 120, 0.3);
+}
+
+.pokemon_type_fire_bgr {
+    background-color: rgba(240,128,48, 0.2);
+}
+
+.pokemon_type_fire_bgr:hover {
+    background-color: rgba(240,128,48, 0.3);
+}
+
+.pokemon_type_water_bgr {
+    background-color: rgba(104,144,240, 0.2);
+}
+
+.pokemon_type_water_bgr:hover {
+    background-color: rgba(104,144,240, 0.3);
+}
+
+.pokemon_type_bug_bgr {
+    background-color: rgba(168,184,32, 0.2);
+}
+
+.pokemon_type_bug_bgr:hover {
+    background-color: rgba(168,184,32, 0.3);
+}
+
+.pokemon_type_normal_bgr {
+    background-color: rgba(255, 235, 182, 0.2);
+}
+
+.pokemon_type_normal_bgr:hover {
+    background-color: rgba(255, 235, 182, 0.3);
+}
+
+.pokemon_type_poison_bgr {
+    background-color: rgba(160,64,160, 0.2);
+}
+
+.pokemon_type_poison_bgr:hover {
+    background-color: rgba(160,64,160, 0.3);
+}
+
+.pokemon_type_flying_bgr {
+    background-color: rgba(168,144,240, 0.2);
+}
+
+.pokemon_type_flying_bgr:hover {
+    background-color: rgba(168,144,240, 0.3);
+}
+
+.pokemon_type_electric_bgr {
+    background-color: rgba(248,208,48, 0.2);
+}
+
+.pokemon_type_electric_bgr:hover {
+    background-color: rgba(248,208,48, 0.3);
+}
+
+.pokemon_type_ground_bgr {
+    background-color: rgba(224,192,104, 0.2);
+}
+
+.pokemon_type_ground_bgr:hover {
+    background-color: rgba(224,192,104, 0.3);
+}
+
+.pokemon_type_fairy_bgr {
+    background-color: rgba(238,153,172, 0.2);
+}
+
+.pokemon_type_fairy_bgr:hover {
+    background-color: rgba(238,153,172, 0.3);
+}
+
+.pokemon_type_fighting_bgr {
+    background-color: rgba(192,48,40, 0.2);
+}
+
+.pokemon_type_fighting_bgr:hover {
+    background-color: rgba(192,48,40, 0.3);
+}
+
+.grass {
+    background-color: rgba(168, 168, 120, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.fire {
+    background-color: rgb(240,128,48, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.water {
+    background-color: rgb(104,144,240, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.bug {
+    background-color: rgb(168,184,32, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.normal {
+    background-color: rgba(255, 235, 182, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.poison {
+    background-color: rgb(160,64,160, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.flying {
+    background-color: rgb(168,144,240, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.electric {
+    background-color: rgb(248,208,48, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.ground {
+    background-color: rgb(224,192,104, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.fairy {
+    background-color: rgb(238,153,172, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
+
+.fighting {
+    background-color: rgb(192,48,40, 0.8);
+    border-radius: 8px;
+    font-size: 12px;
+    color: white;
+    padding: 4px 8px;
+}
