@@ -39,6 +39,7 @@ async function getListOfAllPokemon() {
 async function getPokemonData(i) {
   let url = listOfAllPokemon[i].url;
   let response = await fetch(url);
+  console.log(response);
   currentPokemonData = await response.json();
   pushIntoLoadedPokemonData(currentPokemonData);
 }
@@ -49,9 +50,8 @@ function pushIntoLoadedPokemonData(currentPokemonData) {
 }
 
 
-async function getPokemonDescription(i) {
+async function getPokemonDescription() {
   let url = `https://pokeapi.co/api/v2/pokemon-species/${currentPokemonData.id}`;
-  console.log(url);
   let response = await fetch(url);
   console.log(response);
   currentPokemonDescription = await response.json();
@@ -68,7 +68,7 @@ async function loadPokemonThumbnail() {
   let loadingCounter = numberOfLoadedPokemon + numberOfNextLoadingPokemon;
   for (let i = numberOfLoadedPokemon; i < loadingCounter; i++) {
     await getPokemonData(i);
-    await getPokemonDescription(i);
+    await getPokemonDescription();
     generatePokemonThumbnail(i);
     generatePokemonType(i);
     console.log(`Pokemon Loaded ${i}/${numberOfAllPokemon}`);
@@ -315,6 +315,7 @@ function scrollEvent() {
 
 
 function loadMorePokemons() {
+  // loadingAnimation();
   loadPokemonThumbnail();
 }
 
@@ -323,4 +324,43 @@ function loadingAnimation() {
   document.getElementById(`load_more_button_container`).innerHTML += `
   <div id="load_more_button">loading ...</div>
   `
+}
+
+
+/// SEARCH
+
+
+function searchPokemon() {
+  reset();
+  let searchInput = document.getElementById('searchbar').value.toLowerCase();
+  for (let i = 0; i < listOfAllPokemon.length; i++) {
+    if (listOfAllPokemon[i].name.includes(searchInput)) {
+      currentPokemonData = 
+      console.log(`${listOfAllPokemon[i].name},${listOfAllPokemon[i].url}  gefunden`);
+      loadSearchedPokemon(i);
+    }
+  }
+
+  document.getElementById('content_container').innerHTML = '';
+}
+
+
+function reset() {
+currentPokemonFlavorText = [];
+loadedPokemonData = [];
+loadedPokemonDescription = [];
+currentPokemonData = '';
+currentPokemonDescription = '';
+}
+
+
+async function loadSearchedPokemon(i) {
+    await getPokemonData(i);
+    await getPokemonDescription(i);
+    generatePokemonThumbnail(i);
+    generatePokemonType(i);
+    console.log(`Pokemon Data Loaded ${i}/${numberOfAllPokemon}`);
+    document.getElementById('loaded_pokemon_counter').innerHTML = `
+      Pokemon Data Loaded ${i + 1}/${numberOfAllPokemon}
+    `;
 }

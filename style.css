@@ -43,6 +43,7 @@ p {
 #pokedex_logo {
     height: 48px;
     object-fit: contain;
+    cursor: pointer;
 }
 
 .searchbar_container {
