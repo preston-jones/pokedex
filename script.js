@@ -290,7 +290,7 @@ function getCurrentPokemonTypeForInfo(i) {
     let pokemonType = loadedPokemonData[i].types[index].type.name;
     let capitalizedType = pokemonType.charAt(0).toUpperCase() + pokemonType.slice(1);
     document.getElementById(`pokemon_info_types_${loadedPokemonData[i].id}`).innerHTML += `
-    <div id="${loadedPokemonData[i].types[index].type.name}" class="pokemon_card_type ${loadedPokemonData[i].types[index].type.name}">${capitalizedType}</div >
+    <div id="${loadedPokemonData[i].types[index].type.name}" class="pokemon_card_types pokemon_type_icon ${loadedPokemonData[i].types[index].type.name}_icon_color">${capitalizedType}</div >
       `;
   }
 }
@@ -307,7 +307,7 @@ function scrollEvent() {
   window.addEventListener("scroll", function () {
     if (window.scrollY >= document.getElementById('content_container').scrollHeight - window.innerHeight) {
       clearTimeout(timeOut);
-      timeOut = setTimeout(loadMorePokemons, 1000);
+      timeOut = setTimeout(loadMorePokemons, 4000);
     }
 
   });

@@ -1,6 +1,6 @@
 function thumbnailTemplateHTML(i) {
 document.getElementById('content_container').innerHTML += `
-  <div onclick="showPokemonInfos(${i})" class="pokemon_card pokemon_type_${currentPokemonData.types[0].type.name}_bgr" id="pokemon_id_${loadedPokemonData[i].id}">
+  <div onclick="showPokemonInfos(${i})" class="pokemon_card thumbnail_bgr_${currentPokemonData.types[0].type.name}" id="pokemon_id_${loadedPokemonData[i].id}">
   <div class="pokemon_card_info">
     <h5>#${createIdDigit(i)}</h5>
     <h4>${upperCasePokemonName(i)}</h4>
@@ -15,6 +15,6 @@ document.getElementById('content_container').innerHTML += `
 
 function pokemonTypeTemplateHTML(i, index, capitalizedType) {
   document.getElementById(`pokemon_card_types_${loadedPokemonData[i].id}`).innerHTML += `
-  <div id="${loadedPokemonData[i].types[index].type.name}" class="pokemon_card_type ${loadedPokemonData[i].types[index].type.name}">${capitalizedType}</div>
+  <div id="${loadedPokemonData[i].types[index].type.name}" class="pokemon_type_icon ${loadedPokemonData[i].types[index].type.name}_icon_color">${capitalizedType}</div>
   `;
 }
