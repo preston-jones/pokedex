@@ -14,7 +14,7 @@ document.getElementById('content_container').innerHTML += `
 
 
 function pokemonTypeTemplateHTML(i, index, capitalizedType) {
-  document.getElementById(`pokemon_card_types_${currentPokemonData.id}`).innerHTML += `
-  <div id="${currentPokemonData.types[index].type.name}" class="pokemon_card_type ${loadedPokemonData[i].types[index].type.name}">${capitalizedType}</div>
+  document.getElementById(`pokemon_card_types_${loadedPokemonData[i].id}`).innerHTML += `
+  <div id="${loadedPokemonData[i].types[index].type.name}" class="pokemon_card_type ${loadedPokemonData[i].types[index].type.name}">${capitalizedType}</div>
   `;
 }

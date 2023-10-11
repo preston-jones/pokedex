@@ -77,7 +77,7 @@ async function loadPokemonThumbnail() {
       `;
   }
   numberOfLoadedPokemon = loadingCounter;
-  numberOfNextLoadingPokemon = 20; // number of Pokemon loading when scrolling
+  // numberOfNextLoadingPokemon = 20; // number of Pokemon loading when scrolling
 }
 
 
@@ -329,22 +329,21 @@ function loadingAnimation() {
 
 /// SEARCH
 
-function searchPokemon() {
-  reset();
+async function searchPokemon() {
+  clearArrays();
   let searchInput = document.getElementById('searchbar').value.toLowerCase();
-  for (let i = 0; i < listOfAllPokemon.length; i++) {
-    if (listOfAllPokemon[i].name.includes(searchInput)) {
-      currentPokemonData =
-        console.log(`${listOfAllPokemon[i].name},${listOfAllPokemon[i].url}  gefunden`);
-      loadSearchedPokemon(i);
+  for (let index = 0; index < listOfAllPokemon.length; index++) {
+    if (listOfAllPokemon[index].name.includes(searchInput)) {
+      console.log(`${listOfAllPokemon[index].name},${listOfAllPokemon[index].url}  gefunden`);
+      await getSearchedPokemonData(index);
     }
   }
-
-  document.getElementById('content_container').innerHTML = '';
+  console.log(loadedPokemonData.length);
+  loadSearchedPokemonThumbnail();
 }
 
 
-function reset() {
+function clearArrays() {
   currentPokemonFlavorText = [];
   loadedPokemonData = [];
   loadedPokemonDescription = [];
@@ -353,13 +352,16 @@ function reset() {
 }
 
 
-async function loadSearchedPokemon(i) {
-  await getPokemonData(i);
-  await getPokemonDescription(i);
-  generatePokemonThumbnail(i);
-  generatePokemonType(i);
-  console.log(`Pokemon Data Loaded ${i}/${numberOfAllPokemon}`);
-  document.getElementById('loaded_pokemon_counter').innerHTML = `
-      Pokemon Data Loaded ${i + 1}/${numberOfAllPokemon}
-    `;
+async function getSearchedPokemonData(index) {
+  await getPokemonData(index);
+  await getPokemonDescription();
+}
+
+
+function loadSearchedPokemonThumbnail() {
+  document.getElementById('content_container').innerHTML = '';
+  for (let i = 0; i < loadedPokemonData.length; i++) {
+    generatePokemonThumbnail(i);
+    generatePokemonType(i);
+  }
 }
