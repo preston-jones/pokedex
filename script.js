@@ -71,13 +71,15 @@ async function loadPokemonThumbnail() {
     await getPokemonDescription();
     generatePokemonThumbnail(i);
     generatePokemonType(i);
-    console.log(`Pokemon Loaded ${i}/${numberOfAllPokemon}`);
-    document.getElementById('loaded_pokemon_counter').innerHTML = `
-      Pokemon Data Loaded ${i + 1}/${numberOfAllPokemon}
-      `;
+    generateLoadedPokemonCounter(i);
   }
   numberOfLoadedPokemon = loadingCounter;
   // numberOfNextLoadingPokemon = 20; // number of Pokemon loading when scrolling
+}
+
+
+function generateLoadedPokemonCounter(i) {
+  pokemonCounterTemplateHTML(i);
 }
 
 
@@ -135,44 +137,18 @@ function addDisplayNoneClass() {
 }
 
 
-// -- Pokemon Infos von angeklicktem Abrufen und speichern -- //
-function showPokemonInfos(i) {
+function loadPokemonInfos(i) {
   removeDisplayNoneClass();
   document.getElementById('pokemon_info_container').innerHTML = '';
-  document.getElementById('pokemon_info_container').innerHTML += `
-  <div class="pokemon_info_card" onclick="event.stopPropagation()">
-  <div class="pokemon_info_header pokemon_type_${loadedPokemonData[i].types[0].type.name}_bgr">
-    <div onclick="closePokemonInfos()">
-    <img class="close_button" src="img/chevron-left-solid.svg">
-    </div>
-    <div class="pokemon_info_header_headline_container">
-      <div class="pokemon_info_header_headline">
-        <div class="pokemon_info_name"><h2>${upperCasePokemonName(i)}</h2></div>
-        <div class="pokemon_card_types" id="pokemon_info_types_${loadedPokemonData[i].id}"></div>
-      </div>
-      <div class="pokemon_info_id">#${createIdDigit(i)}</div>
-    </div>
-    <div class="pokemon_info_png_container">
-      <img class="pokemon_png_info_size" src="${loadedPokemonData[i].sprites.other.home.front_shiny}">
-    </div>
-    </div>
-    <div class="pokemon_info">
-      <div class="pokemon_info_category_buttons_container">
-      <div class="pokemon_info_category_button" id="stats_button" onclick="loadAbout(${i})">ABOUT</div>
-      <div class="pokemon_info_category_button" id="evolution_button" onclick="loadPokemonEvolution(${i})">EVOLUTION</div>
-      <div class="pokemon_info_category_button" id="moves_button" onclick="loadPokemonMoves(${i})">MOVES</div>
-    </div>
-    <div class="pokemon_infos" id="infos_${loadedPokemonData[i].name}"></div>
-  </div>
-  </div>
-    `;
+  PokemonInfosTemplateHTML(i);
   setButtonActive(id = 'stats_button');
-  getCurrentPokemonTypeForInfo(i);
+  loadPokemonTypeForInfo(i);
   loadPokemonStats(i);
   loadPokemonFlavorText(i);
 }
 
 
+// CATEGORY BUTTONS //
 function clickButton(id) {
   let clicked = id;
   setButtonActive(clicked);
@@ -230,15 +206,15 @@ function checkLanguage(i, index) {
 }
 
 
-function pushInCurrentFlavorDescription(i, index) {
-  currentPokemonFlavorText.push(loadedPokemonDescription[i].flavor_text_entries[index].flavor_text);
-}
-
-
 function checkIfStingIsIncluded(i, index) {
   if (currentPokemonFlavorText.includes(loadedPokemonDescription[i].flavor_text_entries[index].flavor_text) == false) {
     pushInCurrentFlavorDescription(i, index);
   }
+}
+
+
+function pushInCurrentFlavorDescription(i, index) {
+  currentPokemonFlavorText.push(loadedPokemonDescription[i].flavor_text_entries[index].flavor_text);
 }
 
 
@@ -252,7 +228,7 @@ function loadPokemonFlavorText(i) {
   currentPokemonFlavorText = [];
   filterFlavorTextByLanguage(i);
   document.getElementById(`text_${loadedPokemonDescription[i].name}`).innerHTML += `
-  <div>${currentPokemonFlavorText[getRandomIndexofArray()]}</div>
+  <div>${currentPokemonFlavorText[getRandomIndexofArray()]}${currentPokemonFlavorText[getRandomIndexofArray()]}</div>
   `;
 }
 
@@ -266,33 +242,26 @@ function getRandomIndexofArray() {
 
 function loadPokemonStats(i) {
   document.getElementById(`infos_${loadedPokemonData[i].name}`).innerHTML = '';
-  document.getElementById(`infos_${loadedPokemonData[i].name}`).innerHTML += `
-  <div class="pokemon_info_text" id="text_${loadedPokemonData[i].name}"></div>
-    <div class="pokemon_info_stats" id="stats_${loadedPokemonData[i].name}">
-    </div>`;
-  let currentPokemonStats = loadedPokemonData[i].stats;
-  let currentStatName;
-  for (let index = 0; index < loadedPokemonData[i].stats.length; index++) {
-    currentStatName = currentPokemonStats[index].stat.name;
-    document.getElementById(`stats_${loadedPokemonData[i].name}`).innerHTML += `
-    <div class="stats_row">
-    <div class="stats_name">${upperCasePokemonStat(currentStatName)}</div>
-    <div class="stats_value">${currentPokemonStats[index].base_stat}</div>
-    <div class="stat_bar_container"><div class="stat_bar" style="max-width: ${currentPokemonStats[index].base_stat}%"></div></div>
-    </div>
-    `;
+  generatePokemonStats(i);
+}
+
+
+function generatePokemonStats(i) {
+  pokemonStatsTemplateHTML(i);
+}
+
+
+function loadPokemonTypeForInfo(i) {
+  for (let index = 0; index < loadedPokemonData[i].types.length; index++) {
+    let pokemonType = loadedPokemonData[i].types[index].type.name;
+    let capitalizedType = pokemonType.charAt(0).toUpperCase() + pokemonType.slice(1);
+    generatePokemonTypeForInfo(i, index, capitalizedType)
   }
 }
 
 
-function getCurrentPokemonTypeForInfo(i) {
-  for (let index = 0; index < loadedPokemonData[i].types.length; index++) {
-    let pokemonType = loadedPokemonData[i].types[index].type.name;
-    let capitalizedType = pokemonType.charAt(0).toUpperCase() + pokemonType.slice(1);
-    document.getElementById(`pokemon_info_types_${loadedPokemonData[i].id}`).innerHTML += `
-    <div id="${loadedPokemonData[i].types[index].type.name}" class="pokemon_card_types pokemon_type_icon ${loadedPokemonData[i].types[index].type.name}_icon_color">${capitalizedType}</div >
-      `;
-  }
+function generatePokemonTypeForInfo(i, index, capitalizedType) {
+  pokemonTypeForInfoTemplateHTML(i, index, capitalizedType)
 }
 
 

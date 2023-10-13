@@ -16,13 +16,17 @@
     <div class="header" id="header">
         <img id="pokedex_logo" src="img/pokedex_logo.png" onclick="window.location.reload()">
         <div class="searchbar_container">
-            <form><input id="searchbar" type="text" placeholder="Search Pokemon by Name or ID"><button onclick="searchPokemon()" id="searchbutton" type="button">OK</button></form>
+            <form><input id="searchbar" type="text" placeholder="Search Pokemon by Name (or ID)"><button
+                    onclick="searchPokemon()" id="searchbutton" type="submit">OK</button></form>
         </div>
         <div id="loaded_pokemon_counter"></div>
     </div>
     <div id="pokemon_info_container" class="display_none" onclick="closePokemonInfos()"></div>
     <div id="content_container"></div>
-    <div id="load_more_pokemon">scroll down for more Pokemon</div>
+    <div class="load_more_pokemon_container">
+        <div id="load_more_pokemon">Load more Pokemon</div>
+        <div id="load_more_pokemon_arrow">&raquo;</div>
+    </div>
 </body>
 
 </html>
