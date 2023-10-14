@@ -7,7 +7,7 @@ function thumbnailTemplateHTML(i) {
     <div class="pokemon_card_types" id="pokemon_card_types_${currentPokemonData.id}">
     </div>
   </div>
-  <img id="pokemon_png" class="pokemon_png pokemon_png_margin" src="${currentPokemonData.sprites.other.home.front_shiny}">
+  <img id="pokemon_png" class="pokemon_png pokemon_png_margin" src="${loadedPokemonData[i].sprites.front_default}">
   </div>
   `;
 }
