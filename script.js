@@ -2,11 +2,10 @@
 let currentPokemonFlavorText = [];
 let loadedPokemonData = [];
 let loadedPokemonDescription = [];
+let loadedPokemonEvolutionChain = [];
 let numberOfNextLoadingPokemon = 20; // first load 20 Pokemon
 let numberOfLoadedPokemon = 0;
 let listOfAllPokemon = [];
-let currentPokemonData;
-let currentPokemonDescription;
 let numberOfAllPokemon;
 
 
@@ -40,7 +39,7 @@ async function getPokemonData(i) {
   let url = listOfAllPokemon[i].url;
   let response = await fetch(url);
   console.log(response);
-  currentPokemonData = await response.json();
+  let currentPokemonData = await response.json();
   pushIntoLoadedPokemonData(currentPokemonData);
 }
 
@@ -50,11 +49,11 @@ function pushIntoLoadedPokemonData(currentPokemonData) {
 }
 
 
-async function getPokemonDescription() {
-  let url = `https://pokeapi.co/api/v2/pokemon-species/${currentPokemonData.id}`;
+async function getPokemonDescription(i) {
+  let url = `https://pokeapi.co/api/v2/pokemon-species/${loadedPokemonData[i].id}`;
   let response = await fetch(url);
   console.log(response);
-  currentPokemonDescription = await response.json();
+  let currentPokemonDescription = await response.json();
   pushIntoLoadedPokemonDescription(currentPokemonDescription);
 }
 
@@ -64,11 +63,26 @@ function pushIntoLoadedPokemonDescription(currentPokemonDescription) {
 }
 
 
+async function getPokemonEvolutinChain(i) {
+  let url = loadedPokemonDescription[i].evolution_chain.url
+  let response = await fetch(url);
+  console.log(response);
+  let currentPokemonEvolutionChain = await response.json();
+  pushIntoLoadedPokemonEvolutionChain(currentPokemonEvolutionChain);
+}
+
+
+function pushIntoLoadedPokemonEvolutionChain(currentPokemonEvolutionChain) {
+  loadedPokemonEvolutionChain.push(currentPokemonEvolutionChain);
+}
+
+
 async function loadPokemonThumbnail() {
   let loadingCounter = numberOfLoadedPokemon + numberOfNextLoadingPokemon;
   for (let i = numberOfLoadedPokemon; i < loadingCounter; i++) {
     await getPokemonData(i);
-    await getPokemonDescription();
+    await getPokemonDescription(i);
+    await getPokemonEvolutinChain(i);
     generatePokemonThumbnail(i);
     generatePokemonType(i);
     generateLoadedPokemonCounter(i);
@@ -167,11 +181,13 @@ function removeButtonActive(id) {
 
 
 function loadPokemonEvolution(i) {
-  document.getElementById(`infos_${loadedPokemonData[i].name}`).innerHTML = '';
-  document.getElementById(`infos_${loadedPokemonData[i].name}`).innerHTML += `
-    <div>Evolution</div>
-    `;
+  generatePokemonEvolutionChain(i);
   document.getElementById('stats_button').classList.remove('pokemon_info_category_button_ACTIVE'); //!!! AUSLAGERN IN EIGENE FUNKTION???
+}
+
+
+function generatePokemonEvolutionChain(i) {
+  pokemonEvolutionChainTemplateHTML(i);
 }
 
 
@@ -293,6 +309,17 @@ function loadingAnimation() {
   document.getElementById(`load_more_button_container`).innerHTML += `
   <div id="load_more_button">loading ...</div>
   `
+}
+
+
+function getPokemonIdByName(pokemonName) {
+  let currentPokemonId;
+  for (let i = 0; i < listOfAllPokemon.length; i++) {
+    if (listOfAllPokemon[i].name === pokemonName) {
+      currentPokemonId = i + 1;
+    }
+    return currentPokemonId;
+  }
 }
 
 
