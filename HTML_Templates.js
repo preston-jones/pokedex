@@ -30,7 +30,7 @@ function PokemonInfosTemplateHTML(i) {
   document.getElementById('pokemon_info_container').innerHTML += `
   <div class="pokemon_info_card" onclick="event.stopPropagation()">
     <div class="pokemon_info_header pokemon_type_${loadedPokemonData[i].types[0].type.name}_bgr">
-        <div onclick="closePokemonInfos()">
+        <div class="close_button_container" onclick="closePokemonInfos()">
           <div class="close_button"><</div>
         </div>
         <div class="pokemon_info_header_headline_container">
@@ -104,7 +104,7 @@ function pokemonEvolutionChainTemplateHTML(i) {
       <div class="evolution_arrow_container"><div>&raquo;</div></div>
     </div>
     <div class="pokemon_evolutin_png_container">
-      <img class="pokemon_png_evolution_size" src="${loadedPokemonData[i + 1].sprites.front_default}">
+      <img class="pokemon_png_evolution_size" src="${loadedPokemonData[i + 2].sprites.front_default}">
       <div>Name: ${loadedPokemonEvolutionChain[i].chain.evolves_to[0].evolves_to[0].species.name}</div>
     </div>
     </div>
