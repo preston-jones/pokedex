@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.ico">
     <script src="script.js"></script>
     <script src="HTML_Templates.js"></script>
     <link rel="stylesheet" href="fonts.css">
@@ -14,10 +15,13 @@
 
 <body onload="load()">
     <div class="header" id="header">
-        <img id="pokedex_logo" src="img/pokedex_logo_pixel.png" onclick="window.location.reload()">
+        <img id="pokedex_logo" src="img/pokedex_logo.png" onclick="window.location.reload()">
         <div class="searchbar_container">
-            <form class="searchbar_container"><input id="searchbar" type="text" placeholder="Search Pokemon"><button
-                    onclick="searchPokemon()" id="searchbutton" type="submit">Search</button></form>
+            <form id="input_form" class="searchbar_container"><input id="searchbar" type="text" placeholder="#Id / Name">
+                <button onclick="searchPokemon()" id="searchbutton" type="submit">
+                    <img class="searchicon" src="img/magnifying-glass-solid.svg">
+                </button>
+            </form>
         </div>
     </div>
     <div id="pokemon_info_container" class="display_none" onclick="closePokemonInfos()"></div>
