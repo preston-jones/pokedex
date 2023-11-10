@@ -5,7 +5,7 @@
 body {
     margin: 0;
     font-family: 'nunito', sans-serif;
-    background-image: url("img/silver-955496_1920.jpg");
+    background-image: url("img/bgr_3.jpg");
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -45,7 +45,7 @@ p {
     position: fixed;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     padding: 8px;
     background-color: white;
@@ -53,21 +53,19 @@ p {
     width: 100%;
     z-index: 1;
     top: 0;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 3px;
-    background-color: rgb(24 24 24 / 80%);
+    box-shadow: rgba(20, 20, 20, 0.6) 0px 3px 3px;
+    background-color: rgb(0, 35, 56);
     gap: 0;
 }
 
 #pokedex_logo {
-    height: 72px;
+    height: 40px;
     object-fit: contain;
     cursor: pointer;
 }
 
 .searchbar_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: none;
     border-radius: 24px;
     padding: 4px;
 }
@@ -143,7 +141,7 @@ p {
     flex-wrap: wrap;
     gap: 24px;
     padding: 24px;
-    margin: 140px 0 80px 0;
+    margin: 56px 0 80px 0;
 }
 
 .pokemon_card {
@@ -189,18 +187,22 @@ p {
     width: 100%;
     padding: 16px;
     border-radius: 16px;
-    gap: 4px;
+    gap: 8px;
 
+}
+
+.pokemon_thumbnail_types {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
 }
 
 .pokemon_card_types {
     display: flex;
-    gap: 4px;
-}
-
-.flex_direction_column {
-    flex-direction: column;
+    flex-direction: row;
     align-items: flex-start;
+    gap: 8px;
 }
 
 .load_more_pokemon_container {
@@ -211,8 +213,8 @@ p {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 4px;
-    background-color: rgb(72 73 65 / 80%);
+    padding: 8px;
+    background-color: rgb(0, 35, 56);
     color: white;
 }
 
@@ -221,19 +223,6 @@ p {
     font-size: 16px;
     font-weight: 400;
     cursor: pointer;
-}
-
-#load_more_pokemon_arrow {
-    font-family: 'VT323', sans-serif;
-    font-size: 21px;
-    font-weight: 400;
-    transform: rotate(90deg);
-
-}
-
-#load_more_pokemon_arrow:hover {
-    transform: rotate(90deg) scale(1.2);
-
 }
 
 /* INFOCARD */
@@ -258,11 +247,14 @@ p {
     border-radius: 0;
     overflow-y: scroll;
     background-color: rgb(255, 255, 255);
-    scrollbar-width: none;  /*hide scrollbar - Firefox */
-    -ms-overflow-style: none;  /*hide scrollbar - Internet Explorer */
+    scrollbar-width: none;
+    /*hide scrollbar - Firefox */
+    -ms-overflow-style: none;
+    /*hide scrollbar - Internet Explorer */
 }
 
-.pokemon_infocard::-webkit-scrollbar {  /*hide scrollbar - Safari + Chrome */
+.pokemon_infocard::-webkit-scrollbar {
+    /*hide scrollbar - Safari + Chrome */
     display: none;
 }
 
@@ -522,6 +514,7 @@ p {
 @media screen and (min-width: 480px) {
     #content_container {
         justify-content: center;
+        margin: 80px 0 80px 0;
     }
 
     .pokemon_card {
@@ -543,8 +536,8 @@ p {
     }
 
     .header {
-        gap: 400px;
         flex-direction: row;
+        padding: 8px 40px;
     }
 
     .load_more_pokemon_container {
@@ -554,6 +547,17 @@ p {
 }
 
 @media screen and (min-width: 689px) {
+    #pokedex_logo {
+        height: 56px;
+    }
+
+    .searchbar_container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4px;
+    }
+
     .pokemon_card {
         width: 300px;
         height: 180px;
@@ -578,8 +582,16 @@ p {
         transform: scale(0.9);
     }
 
+    .pokemon_thumbnail_types {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
     .pokemon_card_types {
-        /* flex-direction: column; */
+        display: flex;
+        flex-direction: row;
         align-items: flex-start;
         gap: 8px;
     }
@@ -587,7 +599,7 @@ p {
     .pokemon_png_info_size {
         height: 160px;
     }
-    
+
     .pokemon_info_container {
         margin-top: -80px;
     }

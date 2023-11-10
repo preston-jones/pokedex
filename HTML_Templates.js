@@ -6,7 +6,7 @@ function thumbnailTemplateHTML(i) {
       <h4>#${createIdDigit(i)}</h4>
       <h3>${upperCase(loadedPokemonData[i].name)}</h3>
     </div>
-    <div class="pokemon_card_types flex_direction_column" id="pokemon_card_types_${loadedPokemonData[i].id}">
+    <div class="pokemon_thumbnail_types" id="pokemon_card_types_${loadedPokemonData[i].id}">
     </div>
   </div>
   <img id="pokemon_png" class="pokemon_png pokemon_png_margin" src="${loadedPokemonData[i].sprites.other.home.front_default}">
