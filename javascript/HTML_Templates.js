@@ -22,12 +22,6 @@ function pokemonThumbnailTypeTemplateHTML(i, index, capitalizedType) {
 }
 
 
-function pokemonCounterTemplateHTML(i) {
-  return `
-  Pokemon Data Loaded: ${i + 1}/${numberOfAllPokemon}<div class="cursor">_</div>`;
-}
-
-
 function pokemonInfoCardTemplateHTML(i) {
   return `
   <div class="pokemon_infocard" onclick="event.stopPropagation()">
@@ -35,7 +29,7 @@ function pokemonInfoCardTemplateHTML(i) {
     </div>
     <div class="pokemon_info_container">
       <div class="pokemon_info_category_buttons_container">
-        <div class="pokemon_info_category_button button_left ${loadedPokemonData[i].types[0].type.name}_icon_color" id="stats_button" onclick="loadAbout(${i})">ABOUT</div>
+        <div class="pokemon_info_category_button button_left ${loadedPokemonData[i].types[0].type.name}_icon_color" id="about_button" onclick="loadAbout(${i})">ABOUT</div>
         <div class="pokemon_info_category_button button_middle ${loadedPokemonData[i].types[0].type.name}_icon_color" id="evolution_button" onclick="loadPokemonEvolution(${i})">EVOLUTION</div>
         <div class="pokemon_info_category_button button_right ${loadedPokemonData[i].types[0].type.name}_icon_color" id="moves_button" onclick="loadPokemonMoves(${i})">MOVES</div>
       </div>
@@ -47,7 +41,7 @@ function pokemonInfoCardTemplateHTML(i) {
 
 
 function categoryAboutTemplateHTML(i) {
-return `
+  return `
     <div class="pokemon_info_text" id="text_${loadedPokemonData[i].name}"></div>
     <div class="about_infos" id="about_${loadedPokemonData[i].name}"></div>
     <div class="pokemon_info_stats" id="stats_${loadedPokemonData[i].name}"></div>
@@ -56,7 +50,7 @@ return `
 
 
 function aboutTemplateHTML(i) {
-return `
+  return `
     <div class="about_bgr_container"><h4>Species:</h4> ${upperCase(loadedPokemonData[i].species.name)}</div>
     <div class="about_bgr_container"><h4>Height:</h4> ${loadedPokemonData[i].height / 10} m</div>
     <div class="about_bgr_container"><h4>Weight:</h4> ${loadedPokemonData[i].weight / 10} kg</div>
@@ -68,9 +62,39 @@ return `
 
 
 function pokemonAbilitiesTemplateHTML(i, index) {
-return `
+  return `
     <div>${upperCase(loadedPokemonData[i].abilities[index].ability.name)},</div>
     `;
+}
+
+
+function pokemonStatsTemplateHTML(i) {
+  let currentPokemonStats = loadedPokemonData[i].stats;
+  let currentStatName;
+  for (let index = 0; index < loadedPokemonData[i].stats.length; index++) {
+    currentStatName = currentPokemonStats[index].stat.name;
+    document.getElementById(`stats_${loadedPokemonData[i].name}`).innerHTML += `
+    <div class="stats_row">
+    <h4 class="stats_name">${upperCasePokemonStat(currentStatName)}</h4>
+    <div class="stats_value">${currentPokemonStats[index].base_stat}</div>
+    <div class="stat_bar_container"><div class="stat_bar ${loadedPokemonData[i].types[0].type.name}_icon_color" style="max-width: ${currentPokemonStats[index].base_stat}%"></div></div>
+    </div>
+    `;
+  }
+}
+
+
+function pokemonMovesListTemplateHTML(i) {
+  return `
+  <div id="pokemon_moves_list_${loadedPokemonData[i].name}" class="pokemon_moves_list"></div>
+`;
+}
+
+
+function pokemonMovesTemplateHTML(i, index) {
+  return `
+<div class="pokemons_moves_container"> ${upperCase(loadedPokemonData[i].moves[index].move.name)}, </div>
+`;
 }
 
 
@@ -138,7 +162,6 @@ async function evolutionChainIsTwoTemplateHTML(i) {
   <div>${upperCase(loadedPokemonEvolutionChain[i].chain.species.name)}</div>
 </div>
   <div class="evolution_arrow_container"><img class="arrow_right" src="img/arrow-right-solid.svg">
-  <div>Lv ${loadedPokemonEvolutionChain[i].chain.evolves_to[0].evolution_details[0].min_level}</div>
   </div>
 <div class="pokemon_evolutin_png_container">
   <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.evolves_to[0].species.name)}">
@@ -157,11 +180,27 @@ async function evolutionChainIsThreeTemplateHTML(i) {
   <div>${upperCase(loadedPokemonEvolutionChain[i].chain.evolves_to[0].species.name)}</div>
 </div>
   <div class="evolution_arrow_container"><img class="arrow_right" src="img/arrow-right-solid.svg">
-  <div>Lv ${loadedPokemonEvolutionChain[i].chain.evolves_to[0].evolves_to[0].evolution_details[0].min_level}</div>
   </div>
 <div class="pokemon_evolutin_png_container">
   <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.evolves_to[0].evolves_to[0].species.name)}">
   <div>${upperCase(loadedPokemonEvolutionChain[i].chain.evolves_to[0].evolves_to[0].species.name)}</div>
 </div>
 `;
+}
+
+
+function loadingAnimationTemplateHTML() {
+  return `
+  <img class="loading_img" src="img/pokeball-1594373_640.png">
+  <div class="loaded_pokemon_counter_container">
+  <div class="loaded_pokemon_counter">Pokemon Data Loading: </div>
+  <div id="loaded_pokemon_counter" class="loaded_pokemon_counter"></div>
+  </div>
+  `;
+}
+
+
+function pokemonCounterTemplateHTML(i) {
+  return `
+  ${i + 1} / ${numberOfNextLoadingPokemon + numberOfLoadedPokemon}`;
 }
