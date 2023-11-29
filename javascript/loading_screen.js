@@ -1,24 +1,23 @@
-//// Loaading Screen
-async function loadMorePokemons() {
-    disableBodyScrolling();
-    loadingAnimation();
-    await loadPokemonThumbnail();
-    hideLoadingContainer();
-    hideLoadingContainer();
-    emptyLoadingContainer();
-    enableBodyScrolling();
+let scrolled = false;
+
+
+function loadMorePokemons() {
+    loadMorePokemonThumbnail();
 }
 
 
 function scrollEvent() {
-    let timeOut;
-    window.addEventListener("scroll", function () {
-        if (window.scrollY >= document.getElementById('content_container').scrollHeight - window.innerHeight) {
-            clearTimeout(timeOut);
-            timeOut = setTimeout(loadMorePokemons, 500);
-        }
+    window.addEventListener("scroll", scrollWhenOnBottom);
+}
 
-    });
+
+function scrollWhenOnBottom() {
+    if (window.scrollY >= document.getElementById('content_container').scrollHeight - window.innerHeight) {
+        if (!scrolled) {
+            scrolled = true;
+            setTimeout(loadMorePokemons(), 1000);
+        }
+    }
 }
 
 
@@ -33,6 +32,7 @@ function disableBodyScrolling() {
 
 
 function loadingAnimation() {
+    emptyLoadingContainer();
     showLoadingContainer();
     document.getElementById(`loading_container`).innerHTML += loadingAnimationTemplateHTML();
 }

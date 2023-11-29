@@ -1,0 +1,244 @@
+.pokemon_type_grass_bgr,
+.thumbnail_bgr_grass {
+    background-color: rgba(168, 168, 120, 0.8);
+}
+
+.thumbnail_bgr_grass:hover {
+    background-color: rgb(168, 168, 120);
+}
+
+.pokemon_type_fire_bgr,
+.thumbnail_bgr_fire {
+    background-color: rgba(240, 128, 48, 0.8);
+}
+
+.thumbnail_bgr_fire:hover {
+    background-color: rgb(240, 128, 48);
+}
+
+.pokemon_type_water_bgr,
+.thumbnail_bgr_water {
+    background-color: rgba(104, 144, 240, 0.8);
+}
+
+.thumbnail_bgr_water:hover {
+    background-color: rgb(104, 144, 240);
+}
+
+.pokemon_type_bug_bgr,
+.thumbnail_bgr_bug {
+    background-color: rgba(168, 184, 32, 0.8);
+}
+
+.thumbnail_bgr_bug:hover {
+    background-color: rgb(168, 184, 32);
+}
+
+.pokemon_type_normal_bgr,
+.thumbnail_bgr_normal {
+    background-color: rgba(255, 235, 182, 0.8);
+}
+
+.thumbnail_bgr_normal:hover {
+    background-color: rgb(255, 235, 182);
+}
+
+.pokemon_type_poison_bgr,
+.thumbnail_bgr_poison {
+    background-color: rgba(160, 64, 160, 0.8);
+}
+
+.thumbnail_bgr_poison:hover {
+    background-color: rgb(160, 64, 160);
+}
+
+.pokemon_type_flying_bgr,
+.thumbnail_bgr_flying {
+    background-color: rgba(168, 144, 240, 0.8);
+}
+
+.thumbnail_bgr_flying:hover {
+    background-color: rgb(168, 144, 240);
+}
+
+.pokemon_type_electric_bgr,
+.thumbnail_bgr_electric {
+    background-color: rgba(248, 208, 48, 0.8);
+}
+
+.thumbnail_bgr_electric:hover {
+    background-color: rgb(248, 208, 48);
+}
+
+.pokemon_type_ground_bgr,
+.thumbnail_bgr_ground {
+    background-color: rgba(224, 192, 104, 0.8);
+}
+
+.thumbnail_bgr_ground:hover {
+    background-color: rgb(224, 192, 104);
+}
+
+.pokemon_type_fairy_bgr,
+.thumbnail_bgr_fairy {
+    background-color: rgba(238, 153, 172, 0.8);
+}
+
+.thumbnail_bgr_fairy:hover {
+    background-color: rgb(238, 153, 172);
+}
+
+.pokemon_type_fighting_bgr,
+.thumbnail_bgr_fighting {
+    background-color: rgba(192, 48, 40, 0.8);
+}
+
+.thumbnail_bgr_fighting:hover {
+    background-color: rgb(192, 48, 40);
+}
+
+.pokemon_type_psychic_bgr,
+.thumbnail_bgr_psychic {
+    background-color: rgba(248, 88, 136, 0.8);
+}
+
+.thumbnail_bgr_psychic:hover {
+    background-color: rgb(248, 88, 136);
+}
+
+.pokemon_type_rock_bgr,
+.thumbnail_bgr_rock {
+    background-color: rgba(184, 160, 56, 0.8);
+}
+
+.thumbnail_bgr_rock:hover {
+    background-color: rgb(184, 160, 56);
+}
+
+.pokemon_type_steel_bgr,
+.thumbnail_bgr_steel {
+    background-color: rgba(184, 184, 208, 0.8);
+}
+
+.thumbnail_bgr_steel:hover {
+    background-color: rgb(184, 184, 208);
+}
+
+.pokemon_type_ghost_bgr,
+.thumbnail_bgr_ghost {
+    background-color: rgba(184, 184, 208, 0.8);
+}
+
+.thumbnail_bgr_ghost:hover {
+    background-color: rgb(184, 184, 208);
+}
+
+.pokemon_type_ice_bgr,
+.thumbnail_bgr_ice {
+    background-color: rgba(102, 204, 255, 0.8);
+}
+
+.thumbnail_bgr_ice:hover {
+    background-color: rgb(102, 204, 255);
+}
+
+.pokemon_type_dragon_bgr,
+.thumbnail_bgr_dragon {
+    background-color: rgba(102, 204, 255, 0.8);
+}
+
+.thumbnail_bgr_dragon:hover {
+    background-color: rgb(102, 204, 255);
+}
+
+.pokemon_type_dark_bgr,
+.thumbnail_bgr_dark {
+    background-color: rgba(112, 88, 72, 0.8);
+}
+
+.thumbnail_bgr_dark:hover {
+    background-color: rgb(112, 88, 72);
+}
+
+
+.pokemon_type_icon {
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 50px;
+    padding: 4px 16px;
+    margin-right: 8px;
+    color: white;
+    border: 1px solid white;
+}
+
+.grass_icon_color {
+    background-color: rgb(168, 168, 120);
+}
+
+.fire_icon_color {
+    background-color: rgb(240, 128, 48);
+}
+
+.water_icon_color {
+    background-color: rgb(104, 144, 240);
+}
+
+.bug_icon_color {
+    background-color: rgb(168, 184, 32);
+}
+
+.normal_icon_color {
+    background-color: rgba(255, 235, 182);
+}
+
+.poison_icon_color {
+    background-color: rgb(160, 64, 160);
+}
+
+.flying_icon_color {
+    background-color: rgb(168, 144, 240);
+}
+
+.electric_icon_color {
+    background-color: rgb(248, 208, 48);
+}
+
+.ground_icon_color {
+    background-color: rgb(224, 192, 104);
+}
+
+.fairy_icon_color {
+    background-color: rgb(238, 153, 172);
+}
+
+.fighting_icon_color {
+    background-color: rgb(192, 48, 40);
+}
+
+.psychic_icon_color {
+    background-color: rgb(248, 88, 136);
+}
+
+.rock_icon_color {
+    background-color: rgb(184, 160, 56);
+}
+
+.steel_icon_color {
+    background-color: rgb(184, 184, 208);
+}
+
+.ghost_icon_color {
+    background-color: rgb(184, 184, 208);
+}
+
+.ice_icon_color {
+    background-color: rgb(102, 204, 255);
+}
+
+.dragon_icon_color {
+    background-color: rgb(102, 204, 255);
+}
+
+.dark_icon_color {
+    background-color: rgb(112, 88, 72);
+}

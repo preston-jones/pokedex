@@ -3,8 +3,9 @@ let currentPokemonFlavorText = [];
 let loadedPokemonData = [];
 let loadedPokemonDescription = [];
 let loadedPokemonEvolutionChain = [];
-let numberOfNextLoadingPokemon = 40; // first load 20 Pokemon
+let numberOfNextLoadingPokemon = 30; // first load 30 Pokemon
 let numberOfLoadedPokemon = 0;
+let pokemonCounter = numberOfNextLoadingPokemon + numberOfLoadedPokemon;
 let listOfAllPokemon = [];
 let numberOfAllPokemon;
 
@@ -15,7 +16,6 @@ async function load() {
   await getListOfAllPokemon();
   await loadPokemonThumbnail();
   hideLoadingContainer();
-  emptyLoadingContainer();
   enableBodyScrolling();
   scrollEvent();
 }
@@ -39,7 +39,7 @@ function pushIntoLoadedPokemonEvolutionChain(currentPokemonEvolutionChain) {
 async function loadPokemonThumbnail() {
   let loadingCounter = numberOfLoadedPokemon + numberOfNextLoadingPokemon;
   for (let i = numberOfLoadedPokemon; i < loadingCounter; i++) {
-    await getPokemonData(i);
+    await getPokemonData(i, listOfAllPokemon);
     await getPokemonDescription(i);
     await getPokemonEvolutinChain(i);
     generatePokemonThumbnail(i);
@@ -47,7 +47,22 @@ async function loadPokemonThumbnail() {
     generateLoadedPokemonCounter(i);
   }
   numberOfLoadedPokemon = loadingCounter;
-  // numberOfNextLoadingPokemon = 20; // number of Pokemon loading when scrolling
+}
+
+
+async function loadMorePokemonThumbnail() {
+  pokemonCounter = numberOfNextLoadingPokemon + numberOfLoadedPokemon;
+  let loadingCounter = numberOfLoadedPokemon + numberOfNextLoadingPokemon;
+  for (let i = numberOfLoadedPokemon; i < loadingCounter; i++) {
+    await getPokemonData(i, listOfAllPokemon);
+    await getPokemonDescription(i);
+    await getPokemonEvolutinChain(i);
+    generatePokemonThumbnail(i);
+    generatePokemonThumbnailType(i);
+    generateLoadedPokemonCounter(i);
+  }
+  numberOfLoadedPokemon = loadingCounter;
+  scrolled = false;
 }
 
 
@@ -104,12 +119,18 @@ function addDisplayNoneClass() {
 }
 
 
-function getPokemonIdByName(pokemonName) {
+function getPokemonIdByName(pokemonName, pokemon_array) {
   let currentPokemonId;
-  for (let i = 0; i < listOfAllPokemon.length; i++) {
-    if (listOfAllPokemon[i].name === pokemonName) {
+  for (let i = 0; i < pokemon_array.length; i++) {
+    if (pokemon_array[i].name === pokemonName) {
       currentPokemonId = i;
       return currentPokemonId;
     }
   }
+}
+
+
+function showMenu() {
+  document.getElementById('searchbar_container').classList.toggle('display_none');
+  addMarginTop();
 }

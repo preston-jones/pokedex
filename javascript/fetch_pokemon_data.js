@@ -17,9 +17,8 @@ async function getListOfAllPokemon() {
 }
 
 
-// Load Data for 20 Pokemons at first
-async function getPokemonData(i) {
-    let url = listOfAllPokemon[i].url;
+async function getPokemonData(i, pokemon_array) {
+    let url = pokemon_array[i].url;
     let response = await fetch(url);
     console.log(response);
     let currentPokemonData = await response.json();
@@ -28,7 +27,7 @@ async function getPokemonData(i) {
 
 
 async function getPokemonDescription(i) {
-    let url = `https://pokeapi.co/api/v2/pokemon-species/${loadedPokemonData[i].id}`;
+    let url = `${loadedPokemonData[i].species.url}`;
     let response = await fetch(url);
     console.log(response);
     let currentPokemonDescription = await response.json();
@@ -45,9 +44,9 @@ async function getPokemonEvolutinChain(i) {
 }
 
 
-async function fetchPokemonImage(pokemonName, imageSrc) {
+async function fetchPokemonImage(pokemonName) {
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`);
     let responseAsJson = await response.json();
     imageSrc = responseAsJson.sprites;
-    return ceckImageSrc(imageSrc);
+    return checkImageSrc(imageSrc);
 }

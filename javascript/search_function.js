@@ -1,28 +1,64 @@
 /// SEARCH
-function searchPokemon() {
-    event.preventDefault();
+let filteredPokemon;
+
+
+async function loadSearchresult() {
+    loadingAnimation();
+    disableBodyScrolling();
+    removeScrollEvent();
+    filterPokemonByName();
+    emptyAllPokemonArrays();
+    await searchResult();
+    clearSearchbar();
+    enableBodyScrolling();
+    hideLoadingContainer();
+    emptyLoadingContainer();
+    enableBodyScrolling();
+}
+
+
+function filterPokemonByName() {
+    let inputValue = document.getElementById('searchbar').value.toLowerCase();
+    filteredPokemon = listOfAllPokemon.filter(function (pokemon) {
+        return pokemon.name.toLowerCase().includes(inputValue);
+    });
     document.getElementById('content_container').innerHTML = '';
-    let searchInput = document.getElementById('searchbar').value.toLowerCase();
-    // loadedPokemonData.filter(checkSearchInput(searchInput));
-    console.log(searchInput);
+    pokemonCounter = filteredPokemon.length;
+    console.log(filteredPokemon);
 }
 
 
-function checkSearchInput(searchInput) {
-    return loadedPokemonData.contain(searchInput);
+function clearSearchbar() {
+    document.getElementById('searchbar').value = '';
 }
 
 
-async function getSearchedPokemonData(index) {
-    await getPokemonData(index);
-    await getPokemonDescription();
+function emptyAllPokemonArrays() {
+    loadedPokemonData = [];
+    loadedPokemonDescription = [];
+    loadedPokemonEvolutionChain = [];
 }
 
 
-function loadSearchedPokemonThumbnail() {
-    document.getElementById('content_container').innerHTML = '';
-    for (let i = 0; i < loadedPokemonData.length; i++) {
+function removeScrollEvent() {
+    window.removeEventListener("scroll", scrollWhenOnBottom);
+}
+
+
+async function searchResult() {
+    for (let i = 0; i < filteredPokemon.length; i++) {
+        await getPokemonData(i, filteredPokemon);
+        await getPokemonDescription(i);
+        await getPokemonEvolutinChain(i);
         generatePokemonThumbnail(i);
-        generatePokemonType(i);
+        generatePokemonThumbnailType(i);
+        generateLoadedPokemonCounter(i);
     }
+    document.getElementById('back_button_container').innerHTML = '';
+    document.getElementById('back_button_container').innerHTML += backButtonTemplateHTML();
+}
+
+
+function addMarginTop() {
+    document.getElementById('content_container').classList.toggle('margin_top');
 }

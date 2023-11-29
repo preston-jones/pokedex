@@ -186,12 +186,12 @@ async function checkForPokemonImage(pokemonName) {
     let check;
     for (let index = 0; index < loadedPokemonData.length; index++) {
         if (loadedPokemonData[index].name === pokemonName) {
-            imageSrc = loadedPokemonData[getPokemonIdByName(pokemonName)].sprites.other.home.front_default;
+            imageSrc = loadedPokemonData[getPokemonIdByName(pokemonName, loadedPokemonData)].sprites.other.home.front_default;
             check = true;
         }
     }
     if (check === true) {
-        return loadedPokemonData[getPokemonIdByName(pokemonName, imageSrc)].sprites.other.home.front_default;
+        return loadedPokemonData[getPokemonIdByName(pokemonName, loadedPokemonData)].sprites.other.home.front_default;
     }
     else {
         return await fetchPokemonImage(pokemonName);
@@ -199,10 +199,11 @@ async function checkForPokemonImage(pokemonName) {
 }
 
 
-function ceckImageSrc(imageSrc) {
+function checkImageSrc(imageSrc) {
     if (imageSrc.other.home.front_default == null) {
         return imageSrc.other["official-artwork"].front_default;
     }
+    
     else {
         return imageSrc.other.home.front_default;
     }

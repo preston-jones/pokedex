@@ -9,7 +9,7 @@ function thumbnailTemplateHTML(i) {
     <div class="pokemon_thumbnail_types" id="pokemon_card_types_${loadedPokemonData[i].id}">
     </div>
   </div>
-  <img id="pokemon_png" class="pokemon_png pokemon_png_margin" src="${loadedPokemonData[i].sprites.other.home.front_default}">
+  <img id="pokemon_png" class="pokemon_png pokemon_png_margin" src="${checkImageSrc(loadedPokemonData[i].sprites)}" alt="No Image Found">
   </div>
   `;
 }
@@ -42,7 +42,7 @@ function pokemonInfoCardTemplateHTML(i) {
 
 function categoryAboutTemplateHTML(i) {
   return `
-    <div class="pokemon_info_text" id="text_${loadedPokemonData[i].name}"></div>
+    <div class="pokemon_info_text" id="text_${loadedPokemonData[i].species.name}"></div>
     <div class="about_infos" id="about_${loadedPokemonData[i].name}"></div>
     <div class="pokemon_info_stats" id="stats_${loadedPokemonData[i].name}"></div>
     `;
@@ -117,7 +117,7 @@ function pokemonStatsTemplateHTML(i) {
 function pokemonInfoCardHeaderTemplateHTML(i, index, capitalizedType) {
   document.getElementById(`pokemon_infocard_header_${loadedPokemonData[i].types[0].type.name}`).innerHTML += `
   <div class="close_button_container" onclick="closePokemonInfos()">
-          <img class="close_button" src="img/arrow-left-solid.svg">
+          <img class="close_button" src="./icons/arrow-left-solid.svg">
         </div>
         <div class="pokemon_info_header_headline_container">
           <div class="pokemon_info_header_headline">
@@ -128,7 +128,7 @@ function pokemonInfoCardHeaderTemplateHTML(i, index, capitalizedType) {
           <div class="pokemon_info_id">#${createIdDigit(i)}</div>
         </div>
         <div class="pokemon_info_png_container">
-          <img class="pokemon_png_info_size" src="${loadedPokemonData[i].sprites.other.home.front_default}">
+          <img class="pokemon_png_info_size" src="${checkImageSrc(loadedPokemonData[i].sprites)}" alt="No Image Found">
         </div>
   `;
 }
@@ -145,9 +145,9 @@ async function evolutionChainIsOneTemplateHTML(i) {
   return `
 <div id="evolution_chain_container_1" class="evolution_chain_row">
 <div class="pokemon_evolutin_png_container">
-  <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.species.name)}">
+  <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.species.name)}" alt="No Image Found">
   <div>${upperCase(loadedPokemonEvolutionChain[i].chain.species.name)}</div>
-  <div>NO EVOLUTION CHAIN FOUND</div>
+  <div>>> NO EVOLUTION CHAIN FOUND <<</div>
 </div>
 </div>
 `;
@@ -158,10 +158,10 @@ async function evolutionChainIsTwoTemplateHTML(i) {
   return `
 <div id="evolution_chain_container_1" class="evolution_chain_row">
 <div class="pokemon_evolutin_png_container">
-  <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.species.name)}">
+  <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.species.name)}" alt="No Image Found">
   <div>${upperCase(loadedPokemonEvolutionChain[i].chain.species.name)}</div>
 </div>
-  <div class="evolution_arrow_container"><img class="arrow_right" src="img/arrow-right-solid.svg">
+  <div class="evolution_arrow_container"><img class="arrow_right" src="./icons/arrow-right-solid.svg">
   </div>
 <div class="pokemon_evolutin_png_container">
   <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.evolves_to[0].species.name)}">
@@ -179,10 +179,10 @@ async function evolutionChainIsThreeTemplateHTML(i) {
   <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.evolves_to[0].species.name)}">
   <div>${upperCase(loadedPokemonEvolutionChain[i].chain.evolves_to[0].species.name)}</div>
 </div>
-  <div class="evolution_arrow_container"><img class="arrow_right" src="img/arrow-right-solid.svg">
+  <div class="evolution_arrow_container"><img class="arrow_right" src="./icons/arrow-right-solid.svg">
   </div>
 <div class="pokemon_evolutin_png_container">
-  <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.evolves_to[0].evolves_to[0].species.name)}">
+  <img class="pokemon_png_evolution_size" src="${await loadPokemonImage(loadedPokemonEvolutionChain[i].chain.evolves_to[0].evolves_to[0].species.name)}" alt="No Image Found">
   <div>${upperCase(loadedPokemonEvolutionChain[i].chain.evolves_to[0].evolves_to[0].species.name)}</div>
 </div>
 `;
@@ -202,5 +202,12 @@ function loadingAnimationTemplateHTML() {
 
 function pokemonCounterTemplateHTML(i) {
   return `
-  ${i + 1} / ${numberOfNextLoadingPokemon + numberOfLoadedPokemon}`;
+  ${i + 1} / ${pokemonCounter}`;
+}
+
+
+function backButtonTemplateHTML() {
+  return `
+  <div id="back_button" onclick="window.location.reload()">BACK</div>
+  `;
 }
