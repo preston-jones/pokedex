@@ -3,14 +3,16 @@ let currentPokemonFlavorText = [];
 let loadedPokemonData = [];
 let loadedPokemonDescription = [];
 let loadedPokemonEvolutionChain = [];
-let numberOfNextLoadingPokemon = 30; // first load 30 Pokemon
+let numberOfNextLoadingPokemon = 40; // first load 40 Pokemon
 let numberOfLoadedPokemon = 0;
 let pokemonCounter = numberOfNextLoadingPokemon + numberOfLoadedPokemon;
 let listOfAllPokemon = [];
 let numberOfAllPokemon;
+let isSearchOn;
 
 
 async function load() {
+  isSearchOn = false;
   disableBodyScrolling();
   loadingAnimation();
   await getListOfAllPokemon();

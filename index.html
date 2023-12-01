@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="./stylesheets/pokemon_types.css">
     <link rel="stylesheet" href="./stylesheets/animations.css">
     <link rel="stylesheet" href="./stylesheets/responsive.css">
+    <link rel="stylesheet" href="./stylesheets/scrollbar.css">
 </head>
 
 <body onload="load()">
@@ -27,7 +28,7 @@
         </div>
         <div class="searchbar_container display_none" id="searchbar_container">
             <form onsubmit="loadSearchresult();return false" id="input_form"><input id="searchbar" type="text" placeholder="Search Pokemon by ID or Name" required>
-                <button type="submit">
+                <button id="searchbutton" type="submit">
                     <div>OK</div>
                 </button>
             </form>
@@ -38,6 +39,7 @@
     <div id="back_button_container"></div>
     <div class="load_more_pokemon_container">
         <div id="load_more_pokemon">&#8595 Scroll down to load more &#8595</div>
+        <div id="copyright">(programmed 2023 by preston jones)</div>
     </div>
 
     <div class="loading_container display_none" id="loading_container">

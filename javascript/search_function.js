@@ -3,6 +3,7 @@ let filteredPokemon;
 
 
 async function loadSearchresult() {
+    isSearchOn = true;
     loadingAnimation();
     disableBodyScrolling();
     removeScrollEvent();
@@ -24,7 +25,6 @@ function filterPokemonByName() {
     });
     document.getElementById('content_container').innerHTML = '';
     pokemonCounter = filteredPokemon.length;
-    console.log(filteredPokemon);
 }
 
 

@@ -29,7 +29,6 @@
 
     .load_more_pokemon_container {
         flex-direction: column;
-        gap: 16px;
     }
 }
 
@@ -96,7 +95,7 @@
     }
 
     .pokemon_info_container {
-        margin-top: -80px;
+        margin-top: -70px;
     }
 
     .pokemon_png_evolution_size {

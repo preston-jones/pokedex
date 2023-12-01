@@ -68,22 +68,6 @@ function pokemonAbilitiesTemplateHTML(i, index) {
 }
 
 
-function pokemonStatsTemplateHTML(i) {
-  let currentPokemonStats = loadedPokemonData[i].stats;
-  let currentStatName;
-  for (let index = 0; index < loadedPokemonData[i].stats.length; index++) {
-    currentStatName = currentPokemonStats[index].stat.name;
-    document.getElementById(`stats_${loadedPokemonData[i].name}`).innerHTML += `
-    <div class="stats_row">
-    <h4 class="stats_name">${upperCasePokemonStat(currentStatName)}</h4>
-    <div class="stats_value">${currentPokemonStats[index].base_stat}</div>
-    <div class="stat_bar_container"><div class="stat_bar ${loadedPokemonData[i].types[0].type.name}_icon_color" style="max-width: ${currentPokemonStats[index].base_stat}%"></div></div>
-    </div>
-    `;
-  }
-}
-
-
 function pokemonMovesListTemplateHTML(i) {
   return `
   <div id="pokemon_moves_list_${loadedPokemonData[i].name}" class="pokemon_moves_list"></div>
@@ -98,26 +82,21 @@ function pokemonMovesTemplateHTML(i, index) {
 }
 
 
-function pokemonStatsTemplateHTML(i) {
-  let currentPokemonStats = loadedPokemonData[i].stats;
-  let currentStatName;
-  for (let index = 0; index < loadedPokemonData[i].stats.length; index++) {
-    currentStatName = currentPokemonStats[index].stat.name;
-    document.getElementById(`stats_${loadedPokemonData[i].name}`).innerHTML += `
+function pokemonStatsTemplateHTML(i, index, currentPokemonStats, currentStatName) {
+  return `
     <div class="stats_row">
     <h4 class="stats_name">${upperCasePokemonStat(currentStatName)}</h4>
     <div class="stats_value">${currentPokemonStats[index].base_stat}</div>
     <div class="stat_bar_container"><div class="stat_bar ${loadedPokemonData[i].types[0].type.name}_icon_color" style="max-width: ${currentPokemonStats[index].base_stat}%"></div></div>
     </div>
     `;
-  }
 }
 
 
-function pokemonInfoCardHeaderTemplateHTML(i, index, capitalizedType) {
-  document.getElementById(`pokemon_infocard_header_${loadedPokemonData[i].types[0].type.name}`).innerHTML += `
+function pokemonInfoCardHeaderTemplateHTML(i) {
+  return `
   <div class="close_button_container" onclick="closePokemonInfos()">
-          <img class="close_button" src="./icons/arrow-left-solid.svg">
+          <img class="close_button" src="./icons/xmark.svg">
         </div>
         <div class="pokemon_info_header_headline_container">
           <div class="pokemon_info_header_headline">
@@ -128,14 +107,16 @@ function pokemonInfoCardHeaderTemplateHTML(i, index, capitalizedType) {
           <div class="pokemon_info_id">#${createIdDigit(i)}</div>
         </div>
         <div class="pokemon_info_png_container">
+        <div onclick="loadPrevPokemonInfoCard(${i})" class="pokemon_button_icon_container" id="prev_pokemon_button_${i}"><img class="pokemon_button_icon" src="./icons/chevron-left-solid.svg"></div>
           <img class="pokemon_png_info_size" src="${checkImageSrc(loadedPokemonData[i].sprites)}" alt="No Image Found">
+          <div onclick="loadNextPokemonInfoCard(${i})" class="pokemon_button_icon_container" id="next_pokemon_button_${i}"><img class="pokemon_button_icon" src="./icons/chevron-right-solid.svg"></div>
         </div>
   `;
 }
 
 
 function pokemonInfoCardHeaderTypesTemplateHTML(i, index, capitalizedType) {
-  document.getElementById(`pokemon_info_types_${loadedPokemonData[i].id}`).innerHTML += `
+  return `
   <div id="${loadedPokemonData[i].types[index].type.name}" class="pokemon_card_types pokemon_type_icon ${loadedPokemonData[i].types[index].type.name}_icon_color">${capitalizedType}</div >
   `;
 }

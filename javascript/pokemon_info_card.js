@@ -1,12 +1,43 @@
 // LOAD POKEMON_INFOCARD
 function loadPokemonInfoCard(i) {
     disableBodyScrolling();
-    document.getElementById('pokemon_info_container').innerHTML = '',
+    document.getElementById('pokemon_info_container').innerHTML = '';
     removeDisplayNoneClass();
     document.getElementById('pokemon_info_container').innerHTML += pokemonInfoCardTemplateHTML(i);
     loadPokemonInfoCardHeader(i);
+    checkPokemonButton(i);
     setButtonActive(id = 'about_button');
     loadAbout(i);
+}
+
+
+function checkPokemonButton(i) {
+    if (i === 0) {
+        document.getElementById(`prev_pokemon_button_${i}`).classList.add("visibility_hidden");
+    }
+    if (i === loadedPokemonData.length - 2) {
+        if (!isSearchOn) {
+            loadMorePokemons();
+        }
+    }
+}
+
+
+function loadNextPokemonInfoCard(i) {
+    let nextPokemon = i;
+    if (i < loadedPokemonData.length - 1) {
+        nextPokemon++;
+        loadPokemonInfoCard(nextPokemon)
+    }
+}
+
+
+function loadPrevPokemonInfoCard(i) {
+    let prevPokemon = i;
+    if (i > 0) {
+        prevPokemon--;
+        loadPokemonInfoCard(prevPokemon)
+    }
 }
 
 
@@ -135,7 +166,12 @@ function loadPokemonStats(i) {
 
 
 function generatePokemonStats(i) {
-    pokemonStatsTemplateHTML(i);
+    let currentPokemonStats = loadedPokemonData[i].stats;
+    let currentStatName;
+    for (let index = 0; index < loadedPokemonData[i].stats.length; index++) {
+        currentStatName = currentPokemonStats[index].stat.name;
+        document.getElementById(`stats_${loadedPokemonData[i].name}`).innerHTML += pokemonStatsTemplateHTML(i, index, currentPokemonStats, currentStatName);
+    }
 }
 
 
@@ -144,13 +180,13 @@ function loadPokemonInfoCardHeader(i) {
     for (let index = 0; index < loadedPokemonData[i].types.length; index++) {
         let pokemonType = loadedPokemonData[i].types[index].type.name;
         let capitalizedType = pokemonType.charAt(0).toUpperCase() + pokemonType.slice(1);
-        pokemonInfoCardHeaderTypesTemplateHTML(i, index, capitalizedType);
+        document.getElementById(`pokemon_info_types_${loadedPokemonData[i].id}`).innerHTML += pokemonInfoCardHeaderTypesTemplateHTML(i, index, capitalizedType);
     }
 }
 
 
-function generatePokemonInfoCardHeader(i, index, capitalizedType) {
-    pokemonInfoCardHeaderTemplateHTML(i, index, capitalizedType);
+function generatePokemonInfoCardHeader(i) {
+    document.getElementById(`pokemon_infocard_header_${loadedPokemonData[i].types[0].type.name}`).innerHTML = pokemonInfoCardHeaderTemplateHTML(i);
 }
 
 
@@ -203,7 +239,7 @@ function checkImageSrc(imageSrc) {
     if (imageSrc.other.home.front_default == null) {
         return imageSrc.other["official-artwork"].front_default;
     }
-    
+
     else {
         return imageSrc.other.home.front_default;
     }

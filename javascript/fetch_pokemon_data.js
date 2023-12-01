@@ -20,7 +20,6 @@ async function getListOfAllPokemon() {
 async function getPokemonData(i, pokemon_array) {
     let url = pokemon_array[i].url;
     let response = await fetch(url);
-    console.log(response);
     let currentPokemonData = await response.json();
     pushIntoLoadedPokemonData(currentPokemonData);
 }
@@ -29,7 +28,6 @@ async function getPokemonData(i, pokemon_array) {
 async function getPokemonDescription(i) {
     let url = `${loadedPokemonData[i].species.url}`;
     let response = await fetch(url);
-    console.log(response);
     let currentPokemonDescription = await response.json();
     pushIntoLoadedPokemonDescription(currentPokemonDescription);
 }
@@ -38,7 +36,6 @@ async function getPokemonDescription(i) {
 async function getPokemonEvolutinChain(i) {
     let url = loadedPokemonDescription[i].evolution_chain.url
     let response = await fetch(url);
-    console.log(response);
     let currentPokemonEvolutionChain = await response.json();
     pushIntoLoadedPokemonEvolutionChain(currentPokemonEvolutionChain);
 }

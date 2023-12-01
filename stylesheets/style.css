@@ -17,6 +17,10 @@ body {
     display: none !important;
 }
 
+.visibility_hidden {
+    visibility: hidden;
+}
+
 h1 {
     margin: 0;
 }
@@ -110,19 +114,29 @@ p {
     border: none;
     background-color: transparent;
     border-bottom: 2px solid rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 0.429);
 }
 
-#searchbar:focus {
+#searchbar:focus,
+#searchbar {
     outline: none;
-    background-color: rgb(249, 249, 249);
+    background-color: rgb(0, 35, 56) !important;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.429);
+    transition: background-color 5000s ease-in-out 0s;
 }
 
 #searchbutton {
     cursor: pointer;
-    border: none;
+    border-radius: 16px;
     background-color: transparent;
     color: white;
     font-size: 16px;
+    background-color: rgba(128, 128, 128, 0.3);
+    padding: 4px 16px;
+
 }
 
 #searchbutton:hover {
@@ -241,10 +255,12 @@ p {
 }
 
 #load_more_pokemon {
-    /* font-family: 'VT323', sans-serif; */
     font-size: 16px;
     font-weight: 400;
-    cursor: pointer;
+}
+
+#copyright {
+    font-size: 10px;
 }
 
 .cursor {
@@ -299,9 +315,19 @@ p {
     background-repeat: no-repeat;
 }
 
-.close_button {
+.close_button_container {
     cursor: pointer;
-    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 50%;
+    padding: 4px;
+    margin-bottom: 8px;
+}
+
+.close_button {
+    height: 10px;
     object-fit: contain;
 }
 
@@ -310,6 +336,9 @@ p {
 }
 
 .pokemon_info_header_headline_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -347,9 +376,23 @@ p {
 
 .pokemon_info_png_container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
     margin-top: -32px;
+}
+
+.pokemon_button_icon {
+    height: 30px;
+    object-fit: contain;
+}
+
+.pokemon_button_icon_container {
+    cursor: pointer;
+}
+
+.pokemon_button_icon_container:hover {
+    transform: scale(1.2);
 }
 
 .pokemon_png_info_size {
@@ -454,13 +497,13 @@ p {
 }
 
 .pokemon_info_category_button:hover {
-    color: white;
+    color: rgb(0, 35, 56);
     transform: scale(1.2);
     font-weight: 700;
 }
 
 .pokemon_info_category_button_ACTIVE {
-    color: white;
+    color: rgb(0, 35, 56);
     transform: scale(1.2);
     font-weight: 700;
 }
