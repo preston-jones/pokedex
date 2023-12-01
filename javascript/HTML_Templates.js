@@ -192,3 +192,13 @@ function backButtonTemplateHTML() {
   <div id="back_button" onclick="window.location.reload()">BACK</div>
   `;
 }
+
+
+function failedSearchTemplateHTML() {
+  return `
+  <div id="failed_search">
+    <div>No Pokemon found</div>
+    <div id="back_button" onclick="window.location.reload()">BACK</div>
+  </div>
+  `;
+}

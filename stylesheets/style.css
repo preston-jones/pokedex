@@ -172,14 +172,6 @@ input:-webkit-autofill:focus {
     margin: 56px 0 12px 0;
 }
 
-#back_button_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px;
-    margin: 12px 0 80px 0;
-}
-
 .pokemon_card {
     display: flex;
     justify-content: space-between;
@@ -371,7 +363,7 @@ input:-webkit-autofill:focus {
     gap: 8px;
     padding: 0 32px 32px;
     border-radius: 24px;
-    margin-top: -100px;
+    margin-top: -90px;
 }
 
 .pokemon_info_png_container {
@@ -619,6 +611,14 @@ input:-webkit-autofill:focus {
     text-align: center;
 }
 
+#back_button_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    margin: 12px 0 80px 0;
+}
+
 #back_button {
     display: flex;
     justify-content: center;
@@ -633,4 +633,14 @@ input:-webkit-autofill:focus {
 #back_button:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+#failed_search {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    font-size: 18px;
+    font-weight: 700;
 }

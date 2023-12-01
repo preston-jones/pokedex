@@ -46,16 +46,22 @@ function removeScrollEvent() {
 
 
 async function searchResult() {
-    for (let i = 0; i < filteredPokemon.length; i++) {
-        await getPokemonData(i, filteredPokemon);
-        await getPokemonDescription(i);
-        await getPokemonEvolutinChain(i);
-        generatePokemonThumbnail(i);
-        generatePokemonThumbnailType(i);
-        generateLoadedPokemonCounter(i);
+    if (filteredPokemon.length > 0) {
+        for (let i = 0; i < filteredPokemon.length; i++) {
+            await getPokemonData(i, filteredPokemon);
+            await getPokemonDescription(i);
+            await getPokemonEvolutinChain(i);
+            generatePokemonThumbnail(i);
+            generatePokemonThumbnailType(i);
+            generateLoadedPokemonCounter(i);
+        }
+        document.getElementById('back_button_container').innerHTML = '';
+        document.getElementById('back_button_container').innerHTML += backButtonTemplateHTML();
     }
-    document.getElementById('back_button_container').innerHTML = '';
-    document.getElementById('back_button_container').innerHTML += backButtonTemplateHTML();
+    else {
+        document.getElementById('back_button_container').innerHTML = '';
+        document.getElementById('back_button_container').innerHTML += failedSearchTemplateHTML();
+    }
 }
 
 
